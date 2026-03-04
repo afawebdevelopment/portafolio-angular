@@ -1,0 +1,73 @@
+.hero {
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+  padding-top: 0;
+}
+
+.hero-background {
+  display: none;
+}
+
+.hero-shape {
+  display: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 0;
+}
+
+.hero-firma {
+  height: 50px;
+  width: auto;
+  filter: none;
+  opacity: 0.9;
+}
+
+.hero-description {
+  display: none;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  color: #2a2a2a;
+  font-weight: 300;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.hero-cta {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: 45vh;
+    min-height: 350px;
+  }
+
+  .hero-firma {
+    height: 40px;
+  }
+
+  .hero-title {
+    font-size: 1.8rem;
+  }
+}
+  }
+
+  .hero-firma {
+    height: 50px;
+  }
+}

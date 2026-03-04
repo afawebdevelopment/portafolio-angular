@@ -1,0 +1,28 @@
+﻿<div class="fullscreen-modal" (click)="onBackdropClick($event)">
+  <button class="close-btn" (click)="closeModal()" aria-label="Cerrar">
+    ✕
+  </button>
+
+  <button class="nav-btn prev-btn" (click)="prev()" aria-label="Foto anterior">
+    ‹
+  </button>
+
+  <div class="modal-content">
+    <img [src]="photo.imageUrl" [alt]="photo.title" class="fullscreen-image">
+    <div class="photo-info">
+      <h2>{{ photo.title }}</h2>
+      <p>{{ photo.description }}</p>
+      <div class="photo-meta">
+        <span class="category">{{ photo.category }}</span>
+        <span class="date">{{ photo.date | date: 'dd/MM/yyyy' }}</span>
+      </div>
+      <div class="tags" *ngIf="photo.tags.length > 0">
+        <span *ngFor="let tag of photo.tags" class="tag">{{ tag }}</span>
+      </div>
+    </div>
+  </div>
+
+  <button class="nav-btn next-btn" (click)="next()" aria-label="Siguiente foto">
+    ›
+  </button>
+</div>

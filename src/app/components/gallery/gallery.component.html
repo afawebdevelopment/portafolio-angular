@@ -1,0 +1,72 @@
+﻿<section id="gallery" class="gallery">
+  <div class="gallery-content">
+      <h1 class="gallery-title">Galería</h1>
+
+    <!-- Filtros -->
+    <div class="filters-section">
+      <div class="search-box">
+        <mat-form-field appearance="outline" class="search-input-field">
+          <mat-label>Buscar fotos...</mat-label>
+          <input 
+            matInput 
+            [(ngModel)]="searchTerm"
+            (input)="onSearchChange()"
+            placeholder="Por título, descripción o etiquetas"
+          >
+        </mat-form-field>
+      </div>
+
+      <div class="category-filters">
+        <button 
+          mat-raised-button
+          *ngFor="let category of categories"
+          [class.active]="selectedCategory === category"
+          [color]="selectedCategory === category ? 'primary' : ''"
+          (click)="filterByCategory(category)"
+        >
+          {{ category }}
+        </button>
+        <button 
+          mat-raised-button
+          *ngIf="selectedCategory"
+          (click)="selectedCategory = null; onSearchChange()"
+        >
+          Limpiar filtro
+        </button>
+      </div>
+    </div>
+
+    <!-- Grid de fotos -->
+    <div class="gallery-grid">
+      <app-photo-card
+        *ngFor="let photo of displayedPhotos"
+        [photo]="photo"
+        (photoClicked)="onPhotoSelected($event)"
+      ></app-photo-card>
+    </div>
+
+    <!-- Paginación con Material -->
+    <div class="pagination-container" *ngIf="photos.length > 0">
+      <mat-paginator
+        [length]="photos.length"
+        [pageSize]="itemsPerPage"
+        [pageSizeOptions]="[6, 12, 24, 48]"
+        (page)="onPageChange($event)"
+        showFirstLastButtons
+        aria-label="Selecciona página"
+      ></mat-paginator>
+      <p class="pagination-info">
+        Mostrando {{ (currentPage * itemsPerPage) + 1 }} - {{ Math.min((currentPage + 1) * itemsPerPage, photos.length) }} de {{ photos.length }} fotos
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Modal Fullscreen -->
+<app-fullscreen-modal
+  *ngIf="showFullscreen && selectedPhoto"
+  [photo]="selectedPhoto"
+  (close)="closeFullscreen()"
+  (nextPhoto)="onNextPhoto()"
+  (prevPhoto)="onPrevPhoto()"
+></app-fullscreen-modal>

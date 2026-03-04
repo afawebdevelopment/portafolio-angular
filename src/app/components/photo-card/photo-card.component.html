@@ -1,0 +1,12 @@
+﻿<div class="photo-card" (click)="onCardClick()">
+  <div class="photo-wrapper">
+    <img [src]="photo.imageUrl" [alt]="photo.title" loading="lazy" class="photo-image">
+    <div class="overlay">
+      <div class="overlay-content">
+        <h3>{{ photo.title }}</h3>
+        <p>{{ photo.description }}</p>
+        <span class="category-badge">{{ photo.category }}</span>
+      </div>
+    </div>
+  </div>
+</div>
